@@ -1,0 +1,76 @@
+spring:
+  datasource:
+  #---mysql configure---#
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/seckill?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: Cg666666
+  #---hikari configure---#
+    hikari:
+  #    池中维护的最小空闲连接数 默认 10
+      minimum-idle: 10
+  #      池中最大连接数，包括闲置和使用中的连接 默认10
+      maximum-pool-size: 30
+  #      自动提交从池中返回的连接 默认：trues
+      auto-commit: false
+  #      连接超时时间,默认30秒，即30000
+      connection-timeout: 1000
+
+  #---thymeleaf---#
+  # 默认thymeleaf模板文件的的前缀prefix是"classpath:/templates/",后缀suffix是".html"
+  thymeleaf:
+    #默认 编码 UTF-8，model HTML5
+    encoding: utf-8
+    mode: html5
+    servlet:
+      content-type: text/html
+    cache: false
+
+
+
+#---Mybatis configure---#
+mybatis:
+  configuration:
+#  使用jdbc的generated-keys获取数据库自增主键值
+    use-generated-keys: true
+#   使用列别名替换列名 默认：true
+    use-column-label: true
+#    开启驼峰命名转换
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.imooc.seckill.entity
+  mapper-locations: classpath:mapper/*.xml
+
+
+
+#将日志输出到日志文件
+logging:
+  path: D:\IdeaProjects\seckill
+  level:
+    root: info
+#  根日志记录器输出级别
+
+#控制台打印debug级别的日志
+debug: false
+
+server:
+  port: 8080
+
+#   redis
+  redis:
+    database: 2
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      pool:
+        # 最大连接数
+        max-active: 8
+        # 连接池最大阻塞等待时间
+        max-wait: -1ms
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池中的最小空闲连接
+        min-idle: 0
+    # 连接超时时间
+    timeout: 2000ms
+
